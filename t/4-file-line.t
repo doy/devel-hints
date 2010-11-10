@@ -1,5 +1,13 @@
 use strict;
-use Test::More tests => 24;
+use Test::More;
+BEGIN {
+    if ($] < 5.010) {
+        plan skip_all => "modifying coderef hints doesn't work properly on 5.8";
+    }
+    else {
+        plan tests => 24;
+    }
+}
 
 use Devel::Hints qw(cop_file cop_line);
 
